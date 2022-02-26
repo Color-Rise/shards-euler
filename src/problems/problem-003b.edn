@@ -1,0 +1,31 @@
+(defchain main-chain
+  600851475143 >= .n
+  1 >= .lastFactor
+
+  (When
+   (-> .n (Math.Mod 2) (Is 0))
+   (-> 2 > .lastFactor
+       (Repeat
+        (-> .n (Math.Divide 2) > .n)
+        :Forever true
+        :Until (-> .n (Math.Mod 2) (IsNot 0)))))
+
+  3 >= .k
+  (Repeat
+   (-> (When
+        (-> .n (Math.Mod .k) (Is 0))
+        (-> .k > .lastFactor
+            (Repeat
+             (-> .n (Math.Divide .k) > .n)
+             :Forever true
+             :Until (-> .n (Math.Mod .k) (IsNot 0)))))
+       .k (Math.Add 2) > .k)
+   :Forever true
+   :Until (-> .n (IsLessEqual 1)))
+
+  .lastFactor (Assert.Is 6857 true)
+  (Log "Answer"))
+
+(defnode root)
+(schedule root main-chain)
+(run root)
