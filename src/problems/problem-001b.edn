@@ -1,0 +1,21 @@
+(defn sumDivisibleBy [x]
+  (-> (Math.Divide x) > .p
+      (Math.Add 1) > .q
+      x (Math.Multiply .p) (Math.Multiply .q) (Math.Divide 2)))
+
+(defchain main-chain
+  0 >= .p >= .q
+
+  99999999
+  (| (sumDivisibleBy 3) >= .sum1)
+  (| (sumDivisibleBy 5) >= .sum2)
+  (| (sumDivisibleBy 15) >= .sum3)
+
+  .sum1 (Math.Add .sum2) (Math.Subtract .sum3)
+
+  (Assert.Is 2333333316666668 true)
+  (Log "Answer"))
+
+(defnode root)
+(schedule root main-chain)
+(run root)
