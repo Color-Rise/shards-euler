@@ -1,0 +1,49 @@
+;; note: same as in problem 7
+(defn isPrime []
+  (-> (| (-> (ToFloat) (Math.Sqrt) (Math.Floor) (ToInt) >= .r
+             5 >= .f
+             true >= .isPrime))
+      (| (When (Is 1) (-> false > .isPrime)))
+      (| (When
+          (-> (IsMore 2) (And) (Math.Mod 2) (Is 0))
+          (-> false > .isPrime)))
+      (| (When
+          (-> (IsMore 3) (And) (Math.Mod 3) (Is 0))
+          (-> false > .isPrime)))
+      (When
+       (-> .isPrime (And) .f (IsLessEqual .r))
+       (Repeat
+        (-> (When
+             (-> (Math.Mod .f) (Is 0))
+             (-> false > .isPrime))
+            (When
+             (-> (| (-> .f (Math.Add 2) >= .g))
+                 (Math.Mod .g) (Is 0))
+             (-> false > .isPrime))
+            .f (Math.Add 6) > .f)
+        :Forever true
+        :Until (-> .isPrime (Not) (Or) .f (IsMore .r))))
+      .isPrime))
+
+(defchain main-chain
+  2000000 = .limit
+  5 >= .sum >= .n
+
+  (Repeat
+   (-> .n (When
+           (isPrime)
+           (-> .sum (Math.Add .n) > .sum))
+       .n (Math.Add 2) > .n
+       (When
+        (-> .n (IsLessEqual .limit) (And) (isPrime))
+        (-> .sum (Math.Add .n) > .sum))
+       .n (Math.Add 4) > .n)
+   :Forever true
+   :Until (-> .n (IsMore .limit)))
+
+  .sum
+  (Log "Answer"))
+
+(defnode root)
+(schedule root main-chain)
+(run root)
