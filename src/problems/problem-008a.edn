@@ -1,0 +1,5 @@
+(defchain main-chain)
+
+(defnode root)
+(schedule root main-chain)
+(run root)
