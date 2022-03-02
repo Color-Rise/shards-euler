@@ -1,5 +1,5 @@
 (defchain main-chain
-  500 = .limit
+  123 = .limit
   1 >= .t >= .a
   0 >= .count
 
@@ -15,7 +15,7 @@
    :Forever true
    :Until (-> .count (IsMore .limit)))
 
-  .t (Assert.Is 76576500 true)
+  .t (Assert.Is 157080 true)
   (Log "Answer"))
 
 (defnode root)

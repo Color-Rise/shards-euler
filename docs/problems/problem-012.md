@@ -19,9 +19,9 @@ Link to the problem: [https://projecteuler.net/problem=12](https://projecteuler.
     28: 1,2,4,7,14,28
     ```
 
-    We can see that 28 is the first triangle number to have over five divisors.
+    We can see that 28 is the first triangle number to have over **five divisors**.
 
-    What is the value of the first triangle number to have over five hundred divisors?
+    What is the value of the first triangle number to have over **five hundred** divisors?
 
 ## A simple solution
 
@@ -36,16 +36,18 @@ Let's call our triangle number $t$. A brute force solution might look like this:
 === "Output"
 
     ```
-    [info] [...] [main-chain] Answer: 76576500
+    [info] [...] [main-chain] Answer: 749700
     ```
+
+However, it is **extremely** slow. We had to reduce the limit so it could run in a reasonable amount of time.
 
 ## A better and faster solution
 
-As expected, the above solution is **extremely** slow.
+We can do better than the above solution.
 
-It can be improved when considering that for every divisor up to the square root, there is by construction a corresponding
-divisor above it. In other words, we can count the number of divisors up to $\sqrt{t}$ and double that number (unless the last 
-divisor is exactly $\sqrt{t}$, in which case we only count it once).
+Considering that for every divisor up to the square root there is by construction a corresponding
+divisor above it, we can count the number of divisors up to $\sqrt{t}$ and double that number &mdash; unless the last 
+divisor is exactly $\sqrt{t}$, in which case we should only count it once.
 
 === "Code"
 
