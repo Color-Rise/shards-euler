@@ -1,0 +1,36 @@
+(defchain main-chain
+  4287721622247962 >= .n (Log "n")
+  .n (ToFloat) (Math.Sqrt) >= .maxFactor
+  1 >= .lastFactor
+
+  (When
+   (-> .n (Math.Mod 2) (Is 0))
+   (-> 2 > .lastFactor
+       (Repeat
+        (-> .n (Math.Divide 2) > .n)
+        :Forever true
+        :Until (-> .n (Math.Mod 2) (IsNot 0)))))
+
+  3 >= .k
+  (Repeat
+   (-> (When
+        (-> .n (Math.Mod .k) (Is 0))
+        (-> .k > .lastFactor
+            (Repeat
+             (-> .n (Math.Divide .k) > .n)
+             :Forever true
+             :Until (-> .n (Math.Mod .k) (IsNot 0)))
+            .n (ToFloat) (Math.Sqrt) > .maxFactor))
+       .k (Math.Add 2) > .k)
+   :Forever true
+   :Until (-> .n (IsLessEqual 1) (Or) .k (ToFloat) (IsMore .maxFactor)))
+
+  (If (-> .n (Is 1))
+      :Then (-> .lastFactor)
+      :Else (-> .n))
+  (Assert.Is 5829843479 true)
+  (Log "Answer"))
+
+(defnode root)
+(schedule root main-chain)
+(run root)

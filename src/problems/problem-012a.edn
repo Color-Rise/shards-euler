@@ -1,0 +1,23 @@
+(defchain main-chain
+  500 = .limit
+  1 >= .t >= .a
+  0 >= .count
+
+  (Repeat
+   (-> 0 > .count
+       (Math.Inc .a)
+       .t (Math.Add .a) > .t
+       (ForRange
+        1 .t
+        (When
+         (-> >= .i .t (Math.Mod .i) (Is 0))
+         (Math.Inc .count))))
+   :Forever true
+   :Until (-> .count (IsMore .limit)))
+
+  .t (Assert.Is 76576500 true)
+  (Log "Answer"))
+
+(defnode root)
+(schedule root main-chain)
+(run root)

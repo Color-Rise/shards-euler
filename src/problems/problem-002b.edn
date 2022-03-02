@@ -1,0 +1,19 @@
+(defchain main-chain
+  0 >= .sum
+  1 >= .a >= .b
+  .a (Math.Add .b) >= .c
+
+  (Repeat
+   (-> .sum (Math.Add .c) > .sum
+       .b (Math.Add .c) > .a
+       .c (Math.Add .a) > .b
+       .a (Math.Add .b) > .c)
+   :Forever true
+   :Until (-> .c (IsMore 4000000)))
+
+  .sum (Assert.Is 4613732 true)
+  (Log "Answer"))
+
+(defnode root)
+(schedule root main-chain)
+(run root)

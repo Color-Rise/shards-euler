@@ -1,0 +1,38 @@
+(defn reverse []
+  (-> >= .n
+      0 >= .reversed
+
+      (Repeat
+       (-> .n (Math.Mod 10) >= .mod
+           .reversed (Math.Multiply 10) (Math.Add .mod) > .reversed
+           .n (Math.Divide 10) > .n)
+       :Forever true
+       :Until (-> .n (Is 0)))
+      .reversed))
+
+(defn isPalindrome [n]
+  (-> n (reverse) (Is n)))
+
+(defchain main-chain
+  0 >= .largest
+  0 >= .a >= .b >= .ab
+
+  (ForRange
+   999 100
+   (-> > .a
+       999 > .b
+       (Repeat
+        (-> .a (Math.Multiply .b) > .ab
+            (When
+             (-> (isPalindrome .ab))
+             (-> .ab > .largest))
+            (Math.Dec .b))
+        :Forever true
+        :Until (-> .b (IsLess .a) (Or) .ab (IsLess .largest)))))
+
+  .largest (Assert.Is 906609 true)
+  (Log "Answer"))
+
+(defnode root)
+(schedule root main-chain)
+(run root)

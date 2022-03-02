@@ -1,0 +1,26 @@
+(defchain main-chain
+  1000 = .s
+  0 >= .a >= .b >= .c
+
+  .s (Math.Subtract 3) (Math.Divide 3) = .max_a
+  (ForRange
+   3 .max_a
+   (-> > .a
+       .a (Math.Add 1) >= .min_b
+       .s (Math.Subtract 1) (Math.Subtract .a) (Math.Divide 2) >= .max_b
+       (ForRange
+        .min_b .max_b
+        (-> > .b
+            .s (Math.Subtract .a) (Math.Subtract .b) > .c
+            .a (Math.Multiply .a) >= .sqr_a
+            .b (Math.Multiply .b) >= .sqr_b
+            .c (Math.Multiply .c) >= .sqr_c
+            (When (-> .sqr_a (Math.Add .sqr_b) (Is .sqr_c))
+                  (-> .a (Math.Multiply .b) (Math.Multiply .c)
+
+                      (Assert.Is 31875000)
+                      (Log "Answer"))))))))
+
+(defnode root)
+(schedule root main-chain)
+(run root)

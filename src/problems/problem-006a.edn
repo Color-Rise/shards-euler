@@ -1,0 +1,16 @@
+(defchain main-chain
+  0.0 >= .sum >= .sum_sqr
+
+  (ForRange
+   1 100
+   (-> (ToFloat)
+       (| (-> (Math.Add .sum) > .sum))
+       (| (-> (Math.Pow 2.0) (Math.Add .sum_sqr) > .sum_sqr))))
+
+  .sum (Math.Pow 2.0) (Math.Subtract .sum_sqr)
+  (ToInt) (Assert.Is 25164150 true)
+  (Log "Answer"))
+
+(defnode root)
+(schedule root main-chain)
+(run root)

@@ -1,0 +1,15 @@
+(defchain main-chain
+  0 >= .sum
+
+  (ForRange
+   0 999
+   (When
+    (-> (Math.Mod 3) (Is 0) (Or) (Math.Mod 5) (Is 0))
+    (-> (Math.Add .sum) > .sum)))
+
+  .sum (Assert.Is 233168 true)
+  (Log "Answer"))
+
+(defnode root)
+(schedule root main-chain)
+(run root)
