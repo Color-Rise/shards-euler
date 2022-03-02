@@ -1,0 +1,134 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, reopened, ready_for_review, review_requested]
+  workflow_dispatch:
+
+jobs:
+
+  #
+  # Build chainblocks for Windows
+  #
+  chainblocks-build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        build-type: ["Release"]
+        bitness: [64bits]
+        include:
+          - bitness: 64bits
+            msystem: MINGW64
+            arch: x86_64
+            artifact: cbl-win64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: fragcolor-xyz/chainblocks
+          token: ${{ secrets.GH_PAT || github.token }}
+          fetch-depth: 1
+          submodules: recursive
+      - name: Set up rust
+        env:
+          RUSTUP_USE_CURL: 1
+        run: |
+          rustup update
+          rustup default stable-${{ matrix.arch }}-pc-windows-gnu
+      - uses: Swatinem/rust-cache@v1
+      - name: Set up MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: ${{ matrix.msystem }}
+          release: false
+          path-type: inherit
+          install: >-
+            base-devel
+            mingw-w64-${{ matrix.arch }}-toolchain
+            mingw-w64-${{ matrix.arch }}-cmake
+            mingw-w64-${{ matrix.arch }}-boost
+            mingw-w64-${{ matrix.arch }}-ninja
+            mingw-w64-${{ matrix.arch }}-clang
+            mingw-w64-${{ matrix.arch }}-lld
+            wget
+      - name: Build
+        env:
+          RUST_BACKTRACE: 1
+        shell: msys2 {0}
+        run: |
+          mkdir build
+          cd build
+          cmake -G Ninja -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} ..
+          ninja cbl
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.artifact }} ${{ matrix.build-type }}
+          path: build/cbl.exe
+          if-no-files-found: error
+
+  #
+  # Run problems
+  #
+  problems-run:
+    needs: chainblocks-build
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: cbl-win64 Release
+          path: src/problems
+      - name: Set up MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          release: false
+          path-type: inherit
+      - name: Run problems
+        shell: msys2 {0}
+        run: |
+          cd src/problems
+          for i in $(find -name '*.edn');
+          do
+            echo "Running '$i'";
+            ./cbl.exe "$i";
+          done  
+
+  #
+  # Build website
+  #
+  website-build:
+    needs: chainblocks-build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - name: Install mkdocs
+        run: |
+          pip install mkdocs-material
+          pip install mkdocs-awesome-pages-plugin
+          pip install mkdocs-macros-plugin
+      - name: Build website
+        run: |
+          mkdocs build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: website
+          path: |
+            site/
+          if-no-files-found: error
