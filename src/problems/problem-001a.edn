@@ -2,7 +2,7 @@
   0 >= .sum
 
   (ForRange
-   0 999
+   1 999
    (When
     (-> (Math.Mod 3) (Is 0) (Or) (Math.Mod 5) (Is 0))
     (-> (Math.Add .sum) > .sum)))

@@ -32,6 +32,7 @@ and find that it is indeed the same number when a palindrome.
 ## A better solution
 
 We can improve the previous implementation in two ways:
+
 * halving the calculations
 * counting downwards since we are looking for the largest palindrome
 
