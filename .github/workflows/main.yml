@@ -106,7 +106,6 @@ jobs:
   # Build website
   #
   website-build:
-    needs: chainblocks-build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -132,3 +131,25 @@ jobs:
           path: |
             site/
           if-no-files-found: error
+
+  #
+  # Publish website
+  #
+  website-publish:
+    if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+    needs: [website-build, problems-run]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: website
+          path: site/
+      - name: FTP deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.2.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: site/
+          server-dir: euler/
