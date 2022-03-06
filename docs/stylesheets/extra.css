@@ -1,0 +1,11 @@
+[data-md-color-scheme="ukraine-azure"] {
+    --md-primary-fg-color:        #0057B7;
+    --md-primary-fg-color--light: #0071EE;
+    --md-primary-fg-color--dark:  #003D80;
+}
+
+[data-md-color-scheme="ukraine-yellow"] {
+    --md-primary-fg-color:        #FFD700;
+    --md-primary-fg-color--light: #FFE34D;
+    --md-primary-fg-color--dark:  #B39600;
+}
