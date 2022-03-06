@@ -1,0 +1,36 @@
+(defn sumProperDivisors []
+  (-> > .n
+      (ToFloat) (Math.Sqrt) (Math.Floor) (ToInt) > .r
+      (If (-> .r (Math.Multiply .r) (Is .n))
+          :Then (-> .r (Math.Add 1) > .divSum (Math.Dec .r))
+          :Else (-> 1 > .divSum))
+      (If (-> .n (Math.Mod 2) (IsNot 0))
+          :Then (-> 3 > .f 2 > .step)
+          :Else (-> 2 > .f 1 > .step))
+      (Repeat
+       (-> (When
+            (-> .n (Math.Mod .f) (Is 0))
+            (-> .n (Math.Divide .f) (Math.Add .f) (Math.Add .divSum) > .divSum))
+           .f (Math.Add .step) > .f)
+       :Forever true
+       :Until (-> .f (IsMore .r)))
+      .divSum))
+
+(defchain main-chain
+  0 >= .amiSum >= .a >= .b
+  0 >= .n >= .r >= .divSum >= .f >= .step
+
+  (ForRange
+   2 9999
+   (-> > .a
+       (sumProperDivisors) > .b
+       (When
+        (-> .b (IsMore .a) (And) .b (sumProperDivisors) (Is .a))
+        (-> .amiSum (Math.Add .a) (Math.Add .b) > .amiSum))))
+
+  .amiSum (Assert.Is 31626)
+  (Log "Answer"))
+
+(defnode root)
+(schedule root main-chain)
+(run root)
