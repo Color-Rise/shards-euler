@@ -42,7 +42,7 @@ Link to the problem: [https://projecteuler.net/problem=8](https://projecteuler.n
 === "Output"
 
     ```
-    [info] [...] [main-chain] Answer: 23514624000
+    --8<-- "src/problems/problem-008a.edn.log"
     ```
 
 --8<-- "includes/license.md"

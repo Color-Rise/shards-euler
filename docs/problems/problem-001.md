@@ -21,7 +21,7 @@ A simple way to do it, is to go through all numbers from $1$ to $999$ and test w
 === "Output"
 
     ```
-    [info] [...] [main-chain] Answer: 233168
+    --8<-- "src/problems/problem-001a.edn.log"
     ```
 
 ## A better and faster solution
@@ -64,7 +64,7 @@ $$
 === "Output"
 
     ```
-    [info] [...] [main-chain] Answer: 2333333316666668
+    --8<-- "src/problems/problem-001b.edn.log"
     ```
 
 More details on the Project Euler's website: [https://projecteuler.net/overview=001](https://projecteuler.net/overview=001).

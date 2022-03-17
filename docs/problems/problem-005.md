@@ -18,7 +18,7 @@ Link to the problem: [https://projecteuler.net/problem=5](https://projecteuler.n
 === "Output"
 
     ```
-    [info] [...] [main-chain] Answer: 232792560
+    --8<-- "src/problems/problem-005a.edn.log"
     ```
 
 More details on the Project Euler's website: [https://projecteuler.net/overview=005](https://projecteuler.net/overview=005).

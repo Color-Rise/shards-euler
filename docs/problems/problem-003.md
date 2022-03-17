@@ -21,7 +21,7 @@ Here we basically try every $k = 2,3,4,5,...$ and if it is a factor of $n$, we d
 === "Output"
 
     ```
-    [info] [...] [main-chain] Answer: 4613732
+    --8<-- "src/problems/problem-003a.edn.log"
     ```
 
 ## A slightly better solution
@@ -38,7 +38,7 @@ avoiding unnecessary checks that would always fail for all even factors.
 === "Output"
 
     ```
-    [info] [...] [main-chain] Answer: 4613732
+    --8<-- "src/problems/problem-003b.edn.log"
     ```
 
 ## A much better solution
@@ -56,8 +56,7 @@ This can be simplified with the realisation that at most one prime factor can be
 === "Output"
 
     ```
-    [info] [...] [main-chain] n: 4287721622247962
-    [info] [...] [main-chain] Answer: 5829843479
+    --8<-- "src/problems/problem-003c.edn.log"
     ```
 
 More details on the Project Euler's website: [https://projecteuler.net/overview=003](https://projecteuler.net/overview=003).

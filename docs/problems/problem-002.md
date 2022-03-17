@@ -23,7 +23,7 @@ A straightfoward implementation would look like this.
 === "Output"
 
     ```
-    [info] [...] [main-chain] Answer: 4613732
+    --8<-- "src/problems/problem-002a.edn.log"
     ```
 
 ## A better solution
@@ -46,7 +46,7 @@ In other words, we can calculate the next 3 numbers during a single iteration an
 === "Output"
 
     ```
-    [info] [...] [main-chain] Answer: 4613732
+    --8<-- "src/problems/problem-002b.edn.log"
     ```
 
 More details on the Project Euler's website: [https://projecteuler.net/overview=002](https://projecteuler.net/overview=002).
