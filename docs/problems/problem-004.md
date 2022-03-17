@@ -26,7 +26,7 @@ and find that it is indeed the same number when a palindrome.
 === "Output"
 
     ```
-    [info] [...] [main-chain] Answer: 906609
+    --8<-- "src/problems/problem-004a.edn.log"
     ```
 
 ## A better solution
@@ -51,7 +51,7 @@ Counting downwards means we start at $999$ instead of $100$ and we can stop once
 === "Output"
 
     ```
-    [info] [...] [main-chain] Answer: 906609    
+    --8<-- "src/problems/problem-004b.edn.log"
     ```
 
 ## A much better solution
@@ -80,7 +80,7 @@ In other words if $a$ is not divisible by $11$ then we know $b$ necessarily must
 === "Output"
 
     ```
-    
+    --8<-- "src/problems/problem-004c.edn.log"
     ```
 
 More details on the Project Euler's website: [https://projecteuler.net/overview=004](https://projecteuler.net/overview=004).

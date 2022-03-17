@@ -36,7 +36,7 @@ Let's call our triangle number $t$. A brute force solution might look like this:
 === "Output"
 
     ```
-    [info] [...] [main-chain] Answer: 749700
+    --8<-- "src/problems/problem-012a.edn.log"
     ```
 
 However, it is **extremely** slow. We had to reduce the limit so it could run in a reasonable amount of time.
@@ -58,7 +58,7 @@ divisor is exactly $\sqrt{t}$, in which case we should only count it once.
 === "Output"
 
     ```
-    [info] [...] [main-chain] Answer: 76576500
+    --8<-- "src/problems/problem-012b.edn.log"
     ```
 
 More details on the Project Euler's website: [https://projecteuler.net/overview=012](https://projecteuler.net/overview=012).

@@ -39,6 +39,8 @@ jobs:
           rustup update
           rustup default stable-${{ matrix.arch }}-pc-windows-gnu
       - uses: Swatinem/rust-cache@v1
+        with:
+          key: ${{ matrix.build-type }}
       - name: Set up MSYS2
         uses: msys2/setup-msys2@v2
         with:
@@ -99,13 +101,20 @@ jobs:
           for i in $(find -name '*.edn');
           do
             echo "Running '$i'";
-            ./cbl.exe "$i";
+            ./cbl.exe "$i" > >(tee "$i.log");
           done  
+      - name: Upload problems logs
+        uses: actions/upload-artifact@v2
+        with:
+          name: problems-logs
+          path: src/problems/**/*.log
+          if-no-files-found: error
 
   #
   # Build website
   #
   website-build:
+    needs: problems-run
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -121,6 +130,11 @@ jobs:
           pip install mkdocs-material
           pip install mkdocs-awesome-pages-plugin
           pip install mkdocs-macros-plugin
+      - name: Download problems logs
+        uses: actions/download-artifact@v2
+        with:
+          name: problems-logs
+          path: src/problems
       - name: Build website
         run: |
           mkdocs build
@@ -137,7 +151,7 @@ jobs:
   #
   website-publish:
     if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
-    needs: [website-build, problems-run]
+    needs: website-build
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact

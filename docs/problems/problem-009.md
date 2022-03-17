@@ -22,7 +22,7 @@ Link to the problem: [https://projecteuler.net/problem=9](https://projecteuler.n
 === "Output"
 
     ```
-    [info] [...] [main-chain] Answer: 31875000
+    --8<-- "src/problems/problem-009a.edn.log"
     ```
 
 More details on the Project Euler's website: [https://projecteuler.net/overview=009](https://projecteuler.net/overview=009).
