@@ -2,7 +2,7 @@
 
 Link to the problem: [https://projecteuler.net/problem=11](https://projecteuler.net/problem=11).
 
-!!! quote "Problem 10"
+!!! quote "Problem 11"
 
     In the 20×20 grid below, four numbers along a diagonal line have been marked in bold.
 
@@ -43,7 +43,7 @@ Link to the problem: [https://projecteuler.net/problem=11](https://projecteuler.
 === "Output"
 
     ```
-    --8<-- "src/problems/problem-010a.edn.log"
+    --8<-- "src/problems/problem-011a.edn.log"
     ```
 
 --8<-- "includes/license.md"

@@ -23,7 +23,6 @@
 
   0 >= .i >= .j >= .k >= .l
   1 >= .prod >= .max_prod
-  "" >= .current
 
   (Repeat
    (-> .i (Math.Add 12) > .j
