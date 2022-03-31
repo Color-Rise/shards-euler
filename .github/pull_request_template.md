@@ -1,15 +1,6 @@
----
-name: Bug fix
-about: Fix an existing bug
-title: ''
-labels: 'bug'
-assignees: ''
-
----
-
 Before submitting your PR, please review the following checklist:
 
-- [ ] **CONSIDER** creating an issue if the bug hadn't been documented before. Add a link to an existing issue otherwwise.
+- [ ] **DO NOT** submit a PR without having discussed the change first in a related issue. If none exist, create one first.
 - [ ] **CONSIDER** adding a unit test if your PR resolves an issue.
 - [ ] **DO** keep pull requests small so they can be easily reviewed.
 - [ ] **DO** make sure all unit tests pass.
