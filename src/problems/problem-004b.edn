@@ -13,7 +13,7 @@
 (defn isPalindrome [n]
   (-> n (reverse) (Is n)))
 
-(defchain main-chain
+(defwire main-wire
   0 >= .largest
   0 >= .a >= .b >= .ab
 
@@ -33,6 +33,6 @@
   .largest (Assert.Is 906609 true)
   (Log "Answer"))
 
-(defnode root)
-(schedule root main-chain)
+(defmesh root)
+(schedule root main-wire)
 (run root)

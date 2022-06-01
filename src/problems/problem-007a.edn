@@ -24,7 +24,7 @@
         :Until (-> .isPrime (Not) (Or) .f (IsMore .r))))
       .isPrime))
 
-(defchain main-chain
+(defwire main-wire
   10001 = .limit
   1 >= .count
   1 >= .candidate
@@ -38,6 +38,6 @@
   .candidate (Assert.Is 104743 true)
   (Log "Answer"))
 
-(defnode root)
-(schedule root main-chain)
+(defmesh root)
+(schedule root main-wire)
 (run root)

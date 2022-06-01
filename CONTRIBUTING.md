@@ -1,4 +1,4 @@
-# Welcome to Chainblocks Euler contributing guide
+# Welcome to Shards Euler contributing guide
 
 Thank you for investing your time in contributing to our project! Any contribution you make will be reflected on [euler.color-rise.xyz](https://euler.color-rise.xyz). 
 
@@ -21,11 +21,11 @@ For more information on how we write our markdown files, see [Material for MkDoc
 
 #### Create a new issue
 
-If you spot a problem with a page or source code, [search if an issue already exists](https://docs.github.com/en/github/searching-for-information-on-github/searching-on-github/searching-issues-and-pull-requests#search-by-the-title-body-or-comments). If a related issue doesn't exist, you can open a [new issue](https://github.com/Color-Rise/chainblocks-euler/issues/new). 
+If you spot a problem with a page or source code, [search if an issue already exists](https://docs.github.com/en/github/searching-for-information-on-github/searching-on-github/searching-issues-and-pull-requests#search-by-the-title-body-or-comments). If a related issue doesn't exist, you can open a [new issue](https://github.com/Color-Rise/shards-euler/issues/new). 
 
 #### Solve an issue
 
-Scan through our [existing issues](https://github.com/Color-Rise/chainblocks-euler/issues) to find one that interests you. You can narrow down the search using `labels` as filters. As a general rule, we don’t assign issues to anyone. If you find an issue to work on, you are welcome to open a PR with a fix.
+Scan through our [existing issues](https://github.com/Color-Rise/shards-euler/issues) to find one that interests you. You can narrow down the search using `labels` as filters. As a general rule, we don’t assign issues to anyone. If you find an issue to work on, you are welcome to open a PR with a fix.
 
 ### Make Changes
 

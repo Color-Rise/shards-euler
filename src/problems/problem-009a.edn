@@ -1,4 +1,4 @@
-(defchain main-chain
+(defwire main-wire
   1000 = .s
   0 >= .a >= .b >= .c
 
@@ -21,6 +21,6 @@
                       (Assert.Is 31875000)
                       (Log "Answer"))))))))
 
-(defnode root)
-(schedule root main-chain)
+(defmesh root)
+(schedule root main-wire)
 (run root)

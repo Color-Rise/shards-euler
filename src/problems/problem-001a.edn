@@ -1,4 +1,4 @@
-(defchain main-chain
+(defwire main-wire
   0 >= .sum
 
   (ForRange
@@ -10,6 +10,6 @@
   .sum (Assert.Is 233168 true)
   (Log "Answer"))
 
-(defnode root)
-(schedule root main-chain)
+(defmesh root)
+(schedule root main-wire)
 (run root)

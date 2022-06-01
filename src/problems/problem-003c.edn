@@ -1,4 +1,4 @@
-(defchain main-chain
+(defwire main-wire
   4287721622247962 >= .n (Log "n")
   .n (ToFloat) (Math.Sqrt) >= .maxFactor
   1 >= .lastFactor
@@ -31,6 +31,6 @@
   (Assert.Is 5829843479 true)
   (Log "Answer"))
 
-(defnode root)
-(schedule root main-chain)
+(defmesh root)
+(schedule root main-wire)
 (run root)

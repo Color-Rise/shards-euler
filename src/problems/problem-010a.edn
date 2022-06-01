@@ -25,7 +25,7 @@
         :Until (-> .isPrime (Not) (Or) .f (IsMore .r))))
       .isPrime))
 
-(defchain main-chain
+(defwire main-wire
   2000000 = .limit
   5 >= .sum >= .n
 
@@ -44,6 +44,6 @@
   .sum
   (Log "Answer"))
 
-(defnode root)
-(schedule root main-chain)
+(defmesh root)
+(schedule root main-wire)
 (run root)

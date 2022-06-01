@@ -3,7 +3,7 @@
       (Math.Add 1) > .q
       x (Math.Multiply .p) (Math.Multiply .q) (Math.Divide 2)))
 
-(defchain main-chain
+(defwire main-wire
   0 >= .p >= .q
 
   99999999
@@ -16,6 +16,6 @@
   (Assert.Is 2333333316666668 true)
   (Log "Answer"))
 
-(defnode root)
-(schedule root main-chain)
+(defmesh root)
+(schedule root main-wire)
 (run root)

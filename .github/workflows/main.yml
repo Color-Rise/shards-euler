@@ -11,9 +11,9 @@ on:
 jobs:
 
   #
-  # Build chainblocks for Windows
+  # Build shards for Windows
   #
-  chainblocks-build:
+  shards-build:
     runs-on: windows-latest
     strategy:
       matrix:
@@ -28,7 +28,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: fragcolor-xyz/chainblocks
+          repository: fragcolor-xyz/shards
           token: ${{ secrets.GH_PAT || github.token }}
           fetch-depth: 1
           submodules: recursive
@@ -76,7 +76,7 @@ jobs:
   # Run problems
   #
   problems-run:
-    needs: chainblocks-build
+    needs: shards-build
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -101,7 +101,7 @@ jobs:
           for i in $(find -name '*.edn');
           do
             echo "Running '$i'";
-            ./cbl.exe "$i" > >(tee "$i.log");
+            ./shards.exe "$i" > >(tee "$i.log");
           done  
       - name: Upload problems logs
         uses: actions/upload-artifact@v2

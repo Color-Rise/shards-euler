@@ -7,15 +7,15 @@ Each of the problem contains the full source of the one or several solutions. To
 === "Windows"
 
     ```
-    .\cbl.exe solution.edn
+    .\shards.exe solution.edn
     ```
 
 === "Unix"
 
     ```
-    ./cbl solution.edn
+    ./shards solution.edn
     ```
 
-`cbl` is the chainblocks executable which can be [built from the sources](https://docs.fragcolor.xyz/contribute/code/building-chainblocks/).
+`shards` is the executable which can be [built from the sources](https://docs.fragcolor.xyz/contribute/code/building-shards/).
 
 --8<-- "includes/license.md"

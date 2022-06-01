@@ -1,4 +1,4 @@
-(defchain main-chain
+(defwire main-wire
   600851475143 >= .n
   1 >= .lastFactor
 
@@ -26,6 +26,6 @@
   .lastFactor (Assert.Is 6857 true)
   (Log "Answer"))
 
-(defnode root)
-(schedule root main-chain)
+(defmesh root)
+(schedule root main-wire)
 (run root)
