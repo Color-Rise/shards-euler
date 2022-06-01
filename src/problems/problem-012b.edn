@@ -1,4 +1,4 @@
-(defchain main-chain
+(defwire main-wire
   500 = .limit
   1 >= .t >= .a
   0 >= .count
@@ -23,6 +23,6 @@
   .t (Assert.Is 76576500 true)
   (Log "Answer"))
 
-(defnode root)
-(schedule root main-chain)
+(defmesh root)
+(schedule root main-wire)
 (run root)

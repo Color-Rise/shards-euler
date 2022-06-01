@@ -1,4 +1,4 @@
-(defchain main-chain
+(defwire main-wire
   0.0 >= .sum >= .sum_sqr
 
   (ForRange
@@ -11,6 +11,6 @@
   (ToInt) (Assert.Is 25164150 true)
   (Log "Answer"))
 
-(defnode root)
-(schedule root main-chain)
+(defmesh root)
+(schedule root main-wire)
 (run root)

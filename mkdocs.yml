@@ -1,6 +1,6 @@
 edit_uri: 'edit/main/docs'
-repo_url: https://github.com/color-rise/chainblocks-euler/
-site_name: Project Euler's problems solved with chainblocks
+repo_url: https://github.com/color-rise/shards-euler/
+site_name: Project Euler's problems solved with shards
 site_url:
 copyright: Copyright © 2022 Color Rise EURL
 extra:

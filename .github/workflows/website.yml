@@ -1,0 +1,73 @@
+name: Website
+
+on:
+  workflow_call:
+    inputs:
+      publish:
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  #
+  # Build website
+  #
+  website-build:
+    runs-on: ubuntu-latest
+    outputs:
+      publish: ${{ steps.setup.outputs.publish }}
+    steps:
+      - name: Setup
+        id: setup
+        run: |
+          echo "::set-output name=publish::${{ github.event.inputs.publish || inputs.publish }}"
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - name: Install mkdocs
+        run: |
+          pip install mkdocs-material
+          pip install mkdocs-awesome-pages-plugin
+          pip install mkdocs-macros-plugin
+      - name: Download problems logs
+        uses: actions/download-artifact@v2
+        with:
+          name: problems-logs
+          path: src/problems
+      - name: Build website
+        run: |
+          mkdocs build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: website
+          path: |
+            site/
+          if-no-files-found: error
+
+  #
+  # Publish website
+  #
+  website-publish:
+    if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+    needs: website-build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: website
+          path: site/
+      - name: FTP deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.2.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: site/
+          server-dir: euler/

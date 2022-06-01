@@ -1,4 +1,4 @@
-(defchain main-chain
+(defwire main-wire
   20 = .max
   1 >= .result
 
@@ -16,6 +16,6 @@
   .result (Assert.Is 232792560 true)
   (Log "Answer"))
 
-(defnode root)
-(schedule root main-chain)
+(defmesh root)
+(schedule root main-wire)
 (run root)

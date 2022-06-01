@@ -1,6 +1,6 @@
-# Chainblocks Euler
+# Shards Euler
 
-Example of solutions of the [Project Euler](https://projecteuler.net)'s problems using [chainblocks](https://github.com/fragcolor-xyz/chainblocks).
+Example of solutions of the [Project Euler](https://projecteuler.net)'s problems using [shards](https://github.com/fragcolor-xyz/shards).
 
 ## Licensing
 
