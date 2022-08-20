@@ -21,6 +21,7 @@
    999 100
    (-> > .a
        999 > .b
+       999999 > .ab
        (Repeat
         (-> .a (Math.Multiply .b) > .ab
             (When

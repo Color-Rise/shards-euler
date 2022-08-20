@@ -23,6 +23,7 @@
        (If (-> .a (Math.Mod 11) (Is 0))
            :Then (-> 999 > .b 1 > .db)
            :Else (-> 990 > .b 11 > .db))
+       999999 > .ab
        (Repeat
         (-> .a (Math.Multiply .b) > .ab
             (When
