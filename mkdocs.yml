@@ -48,8 +48,9 @@ plugins:
 theme:
   # favicon: assets/images/favicon.svg
   features:
-    - navigation.indexes
     - navigation.expand
+    - navigation.footer
+    - navigation.indexes
     - navigation.instant
     - navigation.tabs
     - navigation.tabs.sticky
